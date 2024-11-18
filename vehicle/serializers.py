@@ -4,4 +4,4 @@ from vehicle.models import Car
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model= Car
-        fielsd ="__all__"
+        fields ="__all__"
