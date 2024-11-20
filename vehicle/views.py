@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets,generics
-from vehicle.serializers import CarSerializer, MotoSerializer, MilageSerializer
-from vehicle.models import Car,Moto
-
+from vehicle.serializers import CarSerializer, MotoSerializer, MilageSerializer, MotoMilageSerializer
+from vehicle.models import Car, Moto, Milage
 
 
 # Create your views here.
@@ -34,3 +33,7 @@ class MotoDestroyAPIView(generics.DestroyAPIView):
 
 class MilageCreateAPIView(generics.CreateAPIView):
     serializer_class = MilageSerializer
+
+class MotoMilageListAPIView(generics.ListAPIView):
+    queryset = Milage.objects.filter(moto__isnull=False)
+    serializer_class = MotoMilageSerializer
