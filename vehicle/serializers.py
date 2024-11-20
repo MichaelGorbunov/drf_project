@@ -30,7 +30,8 @@ class MotoSerializer(serializers.ModelSerializer):
         return milage.milage
 
 class MotoMilageSerializer(serializers.ModelSerializer):
-    # moto = MotoSerializer()
-    model = Milage
-    # fields=("milage","year","moto",)
-    fields = ("milage", "year", )
+    moto = MotoSerializer()
+    class Meta:
+        model = Milage
+        fields=("milage","year","moto",)
+    # fields = ("milage", "year", )
