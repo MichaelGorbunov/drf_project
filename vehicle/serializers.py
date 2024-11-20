@@ -15,9 +15,13 @@ class MotoSerializer(serializers.ModelSerializer):
         model= Moto
         fields ="__all__"
     def get_last_milage(self,instance):
-        if instance.milage_set.all().first():
-            return instance.milage_set.all().first().milage
-        return 0
+        # if instance.milage_set.all().first():
+        #     return instance.milage_set.all().first().milage
+        # return 0
+        milage = instance.milage_set.first()#сразу первое значение
+        if not milage:
+            return 0
+        return milage.milage
 
 class MilageSerializer(serializers.ModelSerializer):
     class Meta:
