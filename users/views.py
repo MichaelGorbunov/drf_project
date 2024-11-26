@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
 from users.serializers import  UserSerializer
+from rest_framework.permissions import AllowAny
 
 from users.models import CustomUser
 
@@ -9,6 +10,7 @@ from users.models import CustomUser
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
     queryset=CustomUser.objects.all()
+    permission_classes = (AllowAny,)
     def perform_create(self, serializer):
         user=serializer.save(is_active=True)
         user.set_password(user.password)
